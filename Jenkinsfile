@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build React App') {
             steps {
                 dir('reactproject') {
                     bat 'npm run build'
@@ -26,20 +26,33 @@ pipeline {
             }
         }
 
-        stage('Test (No Tests Present)') {
+        stage('Skip Tests (No Tests Present)') {
+            steps {
+                echo 'No tests available — skipping test stage...'
+            }
+        }
+
+        stage('Docker Build Image') {
             steps {
                 dir('reactproject') {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
-                        bat 'npm test'
-                    }
+                    bat 'docker build -t portfolio-react .'
                 }
             }
         }
 
-        stage('Deploy') {
+        stage('Docker Run Container') {
             steps {
-                echo 'Deploy step here...'
+                bat 'docker stop portfolio || exit 0'
+                bat 'docker rm portfolio || exit 0'
+                bat 'docker run -d -p 3000:80 --name portfolio portfolio-react'
+            }
+        }
+
+        stage('Finish') {
+            steps {
+                echo 'Pipeline completed successfully ✅'
             }
         }
     }
+
 }
