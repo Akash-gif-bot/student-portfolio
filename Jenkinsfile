@@ -28,7 +28,10 @@ pipeline {
         stage('Test') {
             steps {
                 dir('reactproject') {
-                    bat 'npm test --passWithNoTests'
+                    bat '''
+                        set CI=false
+                        npm test
+                    '''
                 }
             }
         }
