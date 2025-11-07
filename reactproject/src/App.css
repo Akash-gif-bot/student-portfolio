@@ -1,0 +1,50 @@
+.App {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input, textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.project-card {
+  background: #f8f9fa;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.project-card button {
+  margin-top: 10px;
+  background: red;
+}
+
+
+
